@@ -15,8 +15,6 @@ export default function Students() {
       .catch((err) => console.log(err));
   }, [studentAdded]);
 
-  console.log(students);
-
   const addStudent = () => {
     setStudentAdded(studentAdded + 1);
   }

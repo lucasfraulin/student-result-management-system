@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Pagination from 'react-pagination-js';
-import './studentsList.css';
+import './list.css';
 
 const StudentsList = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);

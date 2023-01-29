@@ -58,7 +58,7 @@ Dashboard Styles
 Form Styles
 */
 
-.form, .students-list {
+.form, .students-list, .courses-list, .results-list{
   margin: 0 auto;
   width: 100%;
   max-width: 800px;
@@ -119,10 +119,18 @@ Form Styles
   top: 10px;
   right: 10px;
   padding: 20px;
-  background-color: green;
+  background-color: grey;
   color: white;
   border-radius: 5px;
   box-shadow: 2px 2px 10px #ccc;
+}
+
+.notification.success{
+  background-color: green;
+}
+
+.notification.error{
+  background-color: red;
 }
 
 .notification button {

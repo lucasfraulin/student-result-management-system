@@ -1,4 +1,4 @@
-.students-list {
+.students-list, .courses-list, .results-list{
   margin-left: auto;
   margin-right: auto;
   padding: 20px;

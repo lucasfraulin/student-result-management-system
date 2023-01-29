@@ -15,6 +15,12 @@ function Sidebar() {
           <li className={location.pathname === '/students' ? 'active' : ''}>
             <Link to="/students" className="nav-link">Students</Link>
           </li>
+          <li className={location.pathname === '/courses' ? 'active' : ''}>
+            <Link to="/courses" className="nav-link">Courses</Link>
+          </li>
+          <li className={location.pathname === '/results' ? 'active' : ''}>
+            <Link to="/results" className="nav-link">Results</Link>
+          </li>
         </ul>
       </nav>
     </div>
