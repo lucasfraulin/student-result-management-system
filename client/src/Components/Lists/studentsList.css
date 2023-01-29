@@ -1,7 +1,7 @@
 .students-list {
   margin-left: auto;
   margin-right: auto;
-  padding: 40px;
+  padding: 20px;
   max-width: 800px;
 }
 
@@ -24,7 +24,7 @@ th {
 /* Pagination */
 .react-pagination-js-default ul {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     margin-top: 1rem;
 }
 
