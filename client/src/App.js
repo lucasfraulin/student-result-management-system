@@ -10,6 +10,8 @@ import Dashboard from "./Layouts/dashboard";
 import Home from "./Pages/Home";
 import Students from  "./Pages/Students";
 
+import './App.css';
+
 function App() {
   return (
     <Routes>

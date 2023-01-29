@@ -1,38 +1,132 @@
-.App {
-  text-align: center;
-}
+/*
+Dashboard Styles
+*/
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: nowrap;
+}
+
+.sidebar {
+  display: block;
+  width: 150px;
+  background-color: #f1f1f1;
+  height: 100vh;
+  padding: 20px 20px 20px 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+/* Navigation links within the sidebar */
+.sidebar nav ul li {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  font-size: 18px;
+}
+
+/* Style for the active link and hover*/
+.sidebar nav ul li:hover, .sidebar nav ul li.active  {
+    text-decoration: underline;
+}
+
+.sidebar nav ul li a:hover, .sidebar nav ul li.active a{
+  color: #676767;
+}
+
+
+.page-container {
+  display: block;
+  padding: 20px;
+  width: calc(100% - 200px);
+  margin-left: 200px;
+}
+
+.page-container div h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+/*
+Form Styles
+*/
+
+.form {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px #ccc;
+}
+
+.form-errors {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.form-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.form-inputs label {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.form-inputs input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-action button {
+  padding: 10px 20px;
+  background-color: blue;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+/*
+ Notification Styles
+ */
+
+.notification {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 20px;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px #ccc;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.notification button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
