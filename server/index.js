@@ -53,7 +53,7 @@ app.post("/courses/submit", (req, res) => {
 // Retrieve course data from mongodb; table "courses"
 app.get("/courses/list", async (req, res) => {
   try {
-    const courses = await Course.find({}); // fetch all students from MongoDB
+    const courses = await Course.find({}); // fetch all courses from MongoDB
     res.json(courses);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -73,7 +73,7 @@ app.post("/results/submit", (req, res) => {
 // Retrieve result data from mongodb; table "results"
 app.get("/results/list", async (req, res) => {
   try {
-    const results = await Result.find({}); // fetch all students from MongoDB
+    const results = await Result.find({}); // fetch all results from MongoDB
     res.json(results);
   } catch (err) {
     res.status(500).json({ message: err.message });
