@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Pagination from 'react-pagination-js';
-import './list.css';
+import React, { useState } from "react";
+import Pagination from "react-pagination-js";
+import "./list.css";
 
 const CoursesList = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +13,7 @@ const CoursesList = ({ data }) => {
   const currentCourses = data.slice(indexOfFirst, indexOfLast);
 
   // Get the last page
-  const lastPage = Math.ceil(totalCourses/coursesPerPage);
+  const lastPage = Math.ceil(totalCourses / coursesPerPage);
 
   // Change page
   const handlePageChange = (newPageNumber) => {
@@ -24,12 +24,16 @@ const CoursesList = ({ data }) => {
     } else {
       setCurrentPage(newPageNumber);
     }
-  }
+  };
 
   return (
     <div className="courses-list">
       <span>
-        Showing {currentPage * coursesPerPage - (coursesPerPage - 1)}-{currentPage * coursesPerPage > totalCourses ? totalCourses : currentPage * coursesPerPage} of {totalCourses} courses
+        Showing {currentPage * coursesPerPage - (coursesPerPage - 1)}-
+        {currentPage * coursesPerPage > totalCourses
+          ? totalCourses
+          : currentPage * coursesPerPage}{" "}
+        of {totalCourses} courses
       </span>
 
       <table>
@@ -46,14 +50,14 @@ const CoursesList = ({ data }) => {
           ))}
         </tbody>
       </table>
-      {coursesPerPage < totalCourses &&
+      {coursesPerPage < totalCourses && (
         <Pagination
           currentPage={currentPage}
           totalSize={data.length}
           sizePerPage={coursesPerPage}
           changeCurrentPage={handlePageChange}
         />
-      }
+      )}
     </div>
   );
 };

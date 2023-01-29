@@ -21,7 +21,7 @@ Dashboard Styles
 
 /* Navigation links within the sidebar */
 .sidebar nav ul li {
-    list-style: none;
+  list-style: none;
 }
 
 .sidebar nav ul li a {
@@ -33,14 +33,15 @@ Dashboard Styles
 }
 
 /* Style for the active link and hover*/
-.sidebar nav ul li:hover, .sidebar nav ul li.active  {
-    text-decoration: underline;
+.sidebar nav ul li:hover,
+.sidebar nav ul li.active {
+  text-decoration: underline;
 }
 
-.sidebar nav ul li a:hover, .sidebar nav ul li.active a{
+.sidebar nav ul li a:hover,
+.sidebar nav ul li.active a {
   color: #676767;
 }
-
 
 .page-container {
   display: block;
@@ -58,7 +59,10 @@ Dashboard Styles
 Form Styles
 */
 
-.form, .students-list, .courses-list, .results-list{
+.form,
+.students-list,
+.courses-list,
+.results-list {
   margin: 0 auto;
   width: 100%;
   max-width: 800px;
@@ -125,11 +129,11 @@ Form Styles
   box-shadow: 2px 2px 10px #ccc;
 }
 
-.notification.success{
+.notification.success {
   background-color: green;
 }
 
-.notification.error{
+.notification.error {
   background-color: red;
 }
 

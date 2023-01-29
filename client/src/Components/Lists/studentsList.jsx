@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Pagination from 'react-pagination-js';
-import './list.css';
+import React, { useState } from "react";
+import Pagination from "react-pagination-js";
+import "./list.css";
 
 const StudentsList = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +13,7 @@ const StudentsList = ({ data }) => {
   const currentStudents = data.slice(indexOfFirstStudent, indexOfLastStudent);
 
   // Get the last page
-  const lastPage = Math.ceil(totalStudents/studentsPerPage);
+  const lastPage = Math.ceil(totalStudents / studentsPerPage);
 
   // Change page
   const handlePageChange = (newPageNumber) => {
@@ -24,12 +24,16 @@ const StudentsList = ({ data }) => {
     } else {
       setCurrentPage(newPageNumber);
     }
-  }
+  };
 
   return (
     <div className="students-list">
       <span>
-        Showing {currentPage * studentsPerPage - (studentsPerPage - 1)}-{currentPage * studentsPerPage > totalStudents ? totalStudents : currentPage * studentsPerPage} of {totalStudents} students
+        Showing {currentPage * studentsPerPage - (studentsPerPage - 1)}-
+        {currentPage * studentsPerPage > totalStudents
+          ? totalStudents
+          : currentPage * studentsPerPage}{" "}
+        of {totalStudents} students
       </span>
 
       <table>
@@ -50,14 +54,14 @@ const StudentsList = ({ data }) => {
           ))}
         </tbody>
       </table>
-      {studentsPerPage < totalStudents &&
+      {studentsPerPage < totalStudents && (
         <Pagination
           currentPage={currentPage}
           totalSize={data.length}
           sizePerPage={studentsPerPage}
           changeCurrentPage={handlePageChange}
         />
-      }
+      )}
     </div>
   );
 };

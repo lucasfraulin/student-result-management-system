@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Notification from '../notification';
+import React, { useState } from "react";
+import axios from "axios";
+import Notification from "../notification";
 
-function CourseForm( props ) {
+function CourseForm(props) {
   const [courseName, setCourseName] = useState("");
-  const [error, setError] = useState('');
-  const [notification, setNotification] = useState("")
+  const [error, setError] = useState("");
+  const [notification, setNotification] = useState("");
 
+  // Remove notification from screen
   const handleNotificationClose = () => {
-    setNotification("")
-  }
+    setNotification("");
+  };
 
-  function clearInputs() {
-    setCourseName('');
-  }
+  // Reset form inputs
+  const clearInputs = () => {
+    setCourseName("");
+  };
 
+  // Save Course in mongodb from form inputs
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!courseName) {
-      setError('All fields are required');
+      setError("All fields are required*");
       return;
     }
 
-    setError('');
+    setError("");
     clearInputs();
 
     try {
-      const response = await axios.post("http://localhost:8000/courses/submit", {
+      await axios.post("http://localhost:8000/courses/submit", {
         courseName,
       });
 
@@ -35,44 +38,41 @@ function CourseForm( props ) {
           message="Course added successfully!"
           type="success"
           handleClose={handleNotificationClose}
-          />
-        );
-        props.addCourse();
-    } catch (error) {
+        />
+      );
+
+      props.addCourse(); // increment counter to trigger state change in list
+    } catch (err) {
       setNotification(
         <Notification
           message="There was an error submitting the form. Please try again."
           type="error"
           handleClose={handleNotificationClose}
-          />
-        );
+        />
+      );
     }
   };
 
   return (
-    <div class="form">
+    <div className="form">
       {notification}
-      <h3> Add New Course </h3>
+      <h3>Add New Course</h3>
       <form onSubmit={handleSubmit}>
-        <div className="form-errors">
-          {error && <p>{error}</p>}
-        </div>
-
+        <div className="form-errors">{error && <p>{error}</p>}</div>
         <div className="form-inputs">
           <label>
             Course Name:
             <input
               type="text"
+              id="course-name"
               value={courseName}
               onChange={(e) => setCourseName(e.target.value)}
             />
           </label>
         </div>
-
         <div className="form-action">
-          <button type="submit" >Submit</button>
+          <button type="submit">Submit</button>
         </div>
-
       </form>
     </div>
   );

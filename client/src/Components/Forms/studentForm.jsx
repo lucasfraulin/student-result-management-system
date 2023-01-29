@@ -1,43 +1,46 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Notification from '../notification';
+import React, { useState } from "react";
+import axios from "axios";
+import Notification from "../notification";
 
-function StudentForm( props ) {
+function StudentForm(props) {
   const [firstName, setFirstName] = useState("");
   const [familyName, setFamilyName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-  const [error, setError] = useState('');
-  const [notification, setNotification] = useState("")
+  const [error, setError] = useState("");
+  const [notification, setNotification] = useState("");
 
+  // Remove notification from screen
   const handleNotificationClose = () => {
-    setNotification("")
-  }
+    setNotification("");
+  };
 
+  // Reset form inputs
   function clearInputs() {
-    setFirstName('');
-    setFamilyName('');
-    setDateOfBirth('');
+    setFirstName("");
+    setFamilyName("");
+    setDateOfBirth("");
   }
 
+  // Save Student in mongodb from form inputs
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!firstName || !familyName || !dateOfBirth) {
-      setError('All fields are required');
+      setError("All fields are required*");
       return;
     }
 
     const minAge = new Date();
     minAge.setFullYear(minAge.getFullYear() - 10);
     if (new Date(dateOfBirth) > minAge) {
-      setError('Student must be at least 10 years old');
+      setError("Student must be at least 10 years old");
       return;
     }
 
-    setError('');
+    setError("");
     clearInputs();
 
     try {
-      const response = await axios.post("http://localhost:8000/students/submit", {
+      await axios.post("http://localhost:8000/students/submit", {
         firstName,
         familyName,
         dateOfBirth,
@@ -48,28 +51,26 @@ function StudentForm( props ) {
           message="Student added successfully!"
           type="success"
           handleClose={handleNotificationClose}
-          />
-        );
-        props.addStudent();
+        />
+      );
+      props.addStudent();
     } catch (error) {
       setNotification(
         <Notification
           message="There was an error submitting the form. Please try again."
           type="error"
           handleClose={handleNotificationClose}
-          />
-        );
+        />
+      );
     }
   };
 
   return (
-    <div class="form">
+    <div className="form">
       {notification}
-      <h3> Add New Student </h3>
+      <h3>Add New Student</h3>
       <form onSubmit={handleSubmit}>
-        <div className="form-errors">
-          {error && <p>{error}</p>}
-        </div>
+        <div className="form-errors">{error && <p>{error}</p>}</div>
 
         <div className="form-inputs">
           <label>
@@ -99,9 +100,8 @@ function StudentForm( props ) {
         </div>
 
         <div className="form-action">
-          <button type="submit" >Submit</button>
+          <button type="submit">Submit</button>
         </div>
-
       </form>
     </div>
   );

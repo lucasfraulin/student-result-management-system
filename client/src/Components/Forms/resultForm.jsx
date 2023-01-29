@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Notification from '../notification';
-import SelectSearch from "react-select-search";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Notification from "../notification";
 import Select from "react-select";
 
-function ResultForm( props ) {
-  const [course, setCourse] = useState("");
-  const [student, setStudent] = useState("");
-  const [gradeVal, setGradeVal] = useState("");
-  const [error, setError] = useState('');
-  const [notification, setNotification] = useState("")
+function ResultForm(props) {
+  const [courseName, setCourseName] = useState("");
+  const [studentName, setStudentName] = useState("");
+  const [grade, setGrade] = useState("");
 
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState([]);
@@ -19,62 +16,72 @@ function ResultForm( props ) {
     { label: "C", value: "C" },
     { label: "D", value: "D" },
     { label: "E", value: "E" },
-    { label: "F", value: "F" }
+    { label: "F", value: "F" },
   ];
 
   const [studentsIsLoading, setStudentsIsLoading] = useState(true);
   const [coursesIsLoading, setCoursesIsLoading] = useState(true);
 
+  const [error, setError] = useState("");
+  const [notification, setNotification] = useState("");
+
+  // Get list of students and courses for select dropdowns
   useEffect(() => {
     axios
-      .get('http://localhost:8000/students/list')
+      .get("http://localhost:8000/students/list")
       .then((res) => {
-        let studentNames = res.data.map(student => ({"label": student.firstName + " " + student.familyName, "value": student.firstName + " " + student.familyName}));
-        setStudents(studentNames);
+        setStudents(
+          res.data.map((student) => ({
+            label: `${student.firstName} ${student.familyName}`,
+            value: `${student.firstName} ${student.familyName}`,
+          }))
+        );
         setStudentsIsLoading(false);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get('http://localhost:8000/courses/list')
+      .get("http://localhost:8000/courses/list")
       .then((res) => {
-        var courseNames = res.data.map(course => ({"label": course.courseName, "value": course.courseName}) );
-        setCourses(courseNames);
+        setCourses(
+          res.data.map((course) => ({
+            label: course.courseName,
+            value: course.courseName,
+          }))
+        );
         setCoursesIsLoading(false);
       })
       .catch((err) => console.log(err));
-
   }, []);
 
+  // Remove notification from screen
   const handleNotificationClose = () => {
-    setNotification("")
-  }
+    setNotification("");
+  };
 
+  // Reset form inputs
   function clearInputs() {
-    setCourse('');
-    setStudent('');
-    setGradeVal('');
+    setCourseName("");
+    setStudentName("");
+    setGrade("");
   }
 
+  // Save Result in mongodb from form inputs
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!course || !student || !gradeVal) {
-      setError('All fields are required');
+    if (!courseName || !studentName || !grade) {
+      setError("All fields are required*");
       return;
     }
 
-    setError('');
+    setError("");
     clearInputs();
 
-    let courseName = course.value;
-    let studentName = student.value;
-    let grade = gradeVal.value;
-
     try {
-      const response = await axios.post("http://localhost:8000/results/submit", {
-        courseName,
-        studentName,
-        grade
+      await axios.post("http://localhost:8000/results/submit", {
+        courseName: courseName.value,
+        studentName: studentName.value,
+        grade: grade.value,
       });
 
       setNotification(
@@ -82,17 +89,18 @@ function ResultForm( props ) {
           message="Result added successfully!"
           type="success"
           handleClose={handleNotificationClose}
-          />
-        );
-        props.addResult();
+        />
+      );
+
+      props.addResult(); // increment counter to trigger state change in list
     } catch (error) {
       setNotification(
         <Notification
           message="There was an error submitting the form. Please try again."
           type="error"
           handleClose={handleNotificationClose}
-          />
-        );
+        />
+      );
     }
   };
 
@@ -101,55 +109,50 @@ function ResultForm( props ) {
       {notification}
       <h3> Add New Result </h3>
       <form onSubmit={handleSubmit}>
-        <div className="form-errors">
-          {error && <p>{error}</p>}
-        </div>
+        <div className="form-errors">{error && <p>{error}</p>}</div>
 
         <div className="form-inputs">
           <label>
             Course Name
-            {
-              !coursesIsLoading &&
+            {!coursesIsLoading && (
               <Select
                 options={courses}
-                value={course}
+                value={courseName}
                 name="Course"
                 placeholder="Choose a course"
                 search
-                onChange={(e) => setCourse(e)}
+                onChange={(e) => setCourseName(e)}
               />
-            }
+            )}
           </label>
           <label>
             Student Name
-            {
-              !studentsIsLoading &&
+            {!studentsIsLoading && (
               <Select
                 options={students}
-                value={student}
+                value={studentName}
                 name="Student"
                 placeholder="Choose a student"
                 search
-                onChange={(e) => setStudent(e)}
+                onChange={(e) => setStudentName(e)}
               />
-            }
+            )}
           </label>
           <label>
             Grade:
             <Select
               options={grades}
-              value={gradeVal}
+              value={grade}
               name="Grade"
               placeholder="Choose a grade"
-              onChange={(e) => setGradeVal(e)}
+              onChange={(e) => setGrade(e)}
             />
           </label>
         </div>
 
         <div className="form-action">
-          <button type="submit" >Submit</button>
+          <button type="submit">Submit</button>
         </div>
-
       </form>
     </div>
   );
