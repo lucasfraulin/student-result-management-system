@@ -19,7 +19,6 @@ function StudentForm( props ) {
     setDateOfBirth('');
   }
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!firstName || !familyName || !dateOfBirth) {

@@ -13,9 +13,18 @@ const StudentsList = ({ data }) => {
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = data.slice(indexOfFirstStudent, indexOfLastStudent);
 
+  // Get the last page
+  const lastPage = Math.ceil(totalStudents/studentsPerPage);
+
   // Change page
   const handlePageChange = (newPageNumber) => {
-    setCurrentPage(newPageNumber);
+    if (newPageNumber < 1) {
+      setCurrentPage(1);
+    } else if (newPageNumber > lastPage) {
+      setCurrentPage(lastPage);
+    } else {
+      setCurrentPage(newPageNumber);
+    }
   }
 
   return (
