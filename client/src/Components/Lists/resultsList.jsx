@@ -7,7 +7,7 @@ const ResultsList = ({ data }) => {
   const [resultsPerPage] = useState(5);
   const totalResults = data.length;
 
-  // Get current students
+  // Get current results
   const indexOfLast = currentPage * resultsPerPage;
   const indexOfFirst = indexOfLast - resultsPerPage;
   const currentResults = data.slice(indexOfFirst, indexOfLast);
@@ -29,15 +29,15 @@ const ResultsList = ({ data }) => {
   return (
     <div className="results-list">
       <span>
-        Showing {currentPage * resultsPerPage - (resultsPerPage - 1)}-{currentPage * resultsPerPage > totalResults ? totalResults : currentPage * resultsPerPage} of {totalResults} students
+        Showing {currentPage * resultsPerPage - (resultsPerPage - 1)}-{currentPage * resultsPerPage > totalResults ? totalResults : currentPage * resultsPerPage} of {totalResults} results
       </span>
 
       <table>
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
+            <th>Course Name</th>
+            <th>Student Name</th>
+            <th>Grade</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +50,7 @@ const ResultsList = ({ data }) => {
           ))}
         </tbody>
       </table>
+
       {resultsPerPage < totalResults &&
         <Pagination
           currentPage={currentPage}
@@ -58,6 +59,7 @@ const ResultsList = ({ data }) => {
           changeCurrentPage={handlePageChange}
         />
       }
+
     </div>
   );
 };

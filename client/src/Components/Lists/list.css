@@ -44,6 +44,7 @@ th {
 .page a:hover, .page a.active {
     background-color: #ddd;
 }
+
 .is-active a {
     background-color: #eee;
 }
