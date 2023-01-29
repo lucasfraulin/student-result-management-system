@@ -113,7 +113,7 @@ function ResultForm(props) {
 
         <div className="form-inputs">
           <label>
-            Course Name
+            Course Name:
             {!coursesIsLoading && (
               <Select
                 options={courses}
@@ -126,7 +126,7 @@ function ResultForm(props) {
             )}
           </label>
           <label>
-            Student Name
+            Student Name:
             {!studentsIsLoading && (
               <Select
                 options={students}
