@@ -29,12 +29,17 @@ th {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  padding-inline-start: 0;
 }
 
 .page,
 .is-active {
   list-style: none;
   margin: 0 0.5rem;
+}
+
+.pageElli {
+  list-style: none;
 }
 
 .page a,
