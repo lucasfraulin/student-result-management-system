@@ -28,40 +28,46 @@ const ResultsList = ({ data }) => {
 
   return (
     <div className="results-list">
-      <span>
-        Showing {currentPage * resultsPerPage - (resultsPerPage - 1)}-
-        {currentPage * resultsPerPage > totalResults
-          ? totalResults
-          : currentPage * resultsPerPage}{" "}
-        of {totalResults} results
-      </span>
+      {data.length === 0 ? (
+        <div>No Results Found</div>
+      ) : (
+        <div>
+          <span>
+            Showing {currentPage * resultsPerPage - (resultsPerPage - 1)}-
+            {currentPage * resultsPerPage > totalResults
+              ? totalResults
+              : currentPage * resultsPerPage}{" "}
+            of {totalResults} results
+          </span>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Course Name</th>
-            <th>Student Name</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentResults.map((result) => (
-            <tr key={result._id}>
-              <td>{result.courseName}</td>
-              <td>{result.studentName}</td>
-              <td>{result.grade}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Course Name</th>
+                <th>Student Name</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentResults.map((result) => (
+                <tr key={result._id}>
+                  <td>{result.courseName}</td>
+                  <td>{result.studentName}</td>
+                  <td>{result.grade}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-      {resultsPerPage < totalResults && (
-        <Pagination
-          currentPage={currentPage}
-          totalSize={data.length}
-          sizePerPage={resultsPerPage}
-          changeCurrentPage={handlePageChange}
-        />
+          {resultsPerPage < totalResults && (
+            <Pagination
+              currentPage={currentPage}
+              totalSize={data.length}
+              sizePerPage={resultsPerPage}
+              changeCurrentPage={handlePageChange}
+            />
+          )}
+        </div>
       )}
     </div>
   );

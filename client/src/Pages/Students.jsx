@@ -22,10 +22,10 @@ export default function Students() {
 
   return (
     <div>
-      <h1> Students</h1>
+      <h1>Students</h1>
       <div className="main-content">
         <StudentForm addStudent={addStudent} />
-        {students.length && <StudentsList data={students} />}
+        <StudentsList data={students} />
       </div>
     </div>
   );

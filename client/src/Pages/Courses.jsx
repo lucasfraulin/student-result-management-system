@@ -22,10 +22,10 @@ export default function Courses() {
 
   return (
     <div>
-      <h1> Courses</h1>
+      <h1>Courses</h1>
       <div className="main-content">
         <CourseForm addCourse={addCourse} />
-        {courses.length && <CoursesList data={courses} />}
+        <CoursesList data={courses} />
       </div>
     </div>
   );

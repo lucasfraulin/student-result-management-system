@@ -22,10 +22,10 @@ export default function Results() {
 
   return (
     <div>
-      <h1> Results</h1>
+      <h1>Results</h1>
       <div className="main-content">
         <ResultForm addResult={addResult} />
-        {results.length && <ResultsList data={results} />}
+        <ResultsList data={results} />
       </div>
     </div>
   );

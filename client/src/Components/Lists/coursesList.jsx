@@ -28,35 +28,41 @@ const CoursesList = ({ data }) => {
 
   return (
     <div className="courses-list">
-      <span>
-        Showing {currentPage * coursesPerPage - (coursesPerPage - 1)}-
-        {currentPage * coursesPerPage > totalCourses
-          ? totalCourses
-          : currentPage * coursesPerPage}{" "}
-        of {totalCourses} courses
-      </span>
+      {data.length === 0 ? (
+        <div>No Courses Found</div>
+      ) : (
+        <div>
+          <span>
+            Showing {currentPage * coursesPerPage - (coursesPerPage - 1)}-
+            {currentPage * coursesPerPage > totalCourses
+              ? totalCourses
+              : currentPage * coursesPerPage}{" "}
+            of {totalCourses} courses
+          </span>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Courses</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentCourses.map((course) => (
-            <tr key={course._id}>
-              <td>{course.courseName}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {coursesPerPage < totalCourses && (
-        <Pagination
-          currentPage={currentPage}
-          totalSize={data.length}
-          sizePerPage={coursesPerPage}
-          changeCurrentPage={handlePageChange}
-        />
+          <table>
+            <thead>
+              <tr>
+                <th>Courses</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentCourses.map((course) => (
+                <tr key={course._id}>
+                  <td>{course.courseName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {coursesPerPage < totalCourses && (
+            <Pagination
+              currentPage={currentPage}
+              totalSize={data.length}
+              sizePerPage={coursesPerPage}
+              changeCurrentPage={handlePageChange}
+            />
+          )}
+        </div>
       )}
     </div>
   );
