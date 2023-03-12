@@ -6,11 +6,16 @@ const Course = require("./models/course");
 const Result = require("./models/result");
 const mongoose = require("mongoose");
 
-// Connect to mongodb
-mongoose.connect("mongodb://localhost:27017/srms", {
+let mongoUrl = process.env.MONGO_CONNECTION_URL;
+if (mongoUrl === null || mongoUrl === "") {
+  mongoUrl = "mongodb://localhost:27017/srms";
+}
+
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
 const db = mongoose.connection;
 
 // Serve frontend react build
