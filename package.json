@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lucasfraulin/student-result-management-system/issues"
   },
-  "homepage": "https://github.com/lucasfraulin/student-result-management-system#readme"
+  "homepage": "https://github.com/lucasfraulin/student-result-management-system#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
