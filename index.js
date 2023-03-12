@@ -85,10 +85,11 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
-// Listen on port 8000
-const port = 8000;
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
- 
