@@ -1,22 +1,18 @@
 {
-  "name": "student-result-management-system",
+  "name": "student-result-managment-system",
   "version": "1.0.0",
-  "description": "demo srms",
-  "main": "server/index.js",
+  "description": "node js backend",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lucasfraulin/student-result-management-system.git"
-  },
-  "author": "Lucas Fraulin",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lucasfraulin/student-result-management-system/issues"
-  },
-  "homepage": "https://github.com/lucasfraulin/student-result-management-system#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7"
   }
 }

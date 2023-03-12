@@ -15,7 +15,7 @@ const db = mongoose.connection;
 
 // Serve frontend react build
 const app = express();
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 // Use bodyparser to parse json results from mongodb
 app.use(bodyParser.json());
