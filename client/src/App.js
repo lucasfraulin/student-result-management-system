@@ -12,12 +12,12 @@ function App() {
     <Routes>
       <Route
         path="/"
-        element={<Dashboard title="Home" renderpage={<Home />} />}
-      />
-      <Route
-        path="/students"
         element={<Dashboard title="Students" renderpage={<Students />} />}
       />
+      {/* <Route
+        path="/students"
+        element={<Dashboard title="Students" renderpage={} />}
+      /> */}
       <Route
         path="/courses"
         element={<Dashboard title="Courses" renderpage={<Courses />} />}

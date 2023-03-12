@@ -11,11 +11,6 @@ function Sidebar() {
         <ul>
           <li className={location.pathname === "/" ? "active" : ""}>
             <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li className={location.pathname === "/students" ? "active" : ""}>
-            <Link to="/students" className="nav-link">
               Students
             </Link>
           </li>

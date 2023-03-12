@@ -67,6 +67,7 @@ function CourseForm(props) {
               id="course-name"
               value={courseName}
               onChange={(e) => setCourseName(e.target.value)}
+              maxlength="250"
             />
           </label>
         </div>

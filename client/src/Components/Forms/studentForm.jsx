@@ -29,6 +29,11 @@ function StudentForm(props) {
       return;
     }
 
+    if (firstName.trim().length === 0 || familyName.trim().length === 0) {
+      setError("All fields are required*");
+      return;
+    }
+
     const minAge = new Date();
     minAge.setFullYear(minAge.getFullYear() - 10);
     if (new Date(dateOfBirth) > minAge) {
@@ -39,11 +44,17 @@ function StudentForm(props) {
     setError("");
     clearInputs();
 
+    let fname = firstName.trim();
+    let famName = familyName.trim();
+    let dob = dateOfBirth;
+
+    console.log(fname, famName, dob);
+
     try {
       await axios.post("http://localhost:8000/students/submit", {
-        firstName,
-        familyName,
-        dateOfBirth,
+        firstName: fname,
+        familyName: famName,
+        dateOfBirth: dob,
       });
 
       setNotification(
@@ -79,6 +90,7 @@ function StudentForm(props) {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
+              maxlength="50"
             />
           </label>
           <label>
@@ -87,6 +99,7 @@ function StudentForm(props) {
               type="text"
               value={familyName}
               onChange={(e) => setFamilyName(e.target.value)}
+              maxlength="50"
             />
           </label>
           <label>
