@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import Notification from "../notification";
 
+
 function CourseForm(props) {
   const [courseName, setCourseName] = useState("");
   const [error, setError] = useState("");
   const [notification, setNotification] = useState("");
+  const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
   // Remove notification from screen
   const handleNotificationClose = () => {
@@ -29,7 +31,7 @@ function CourseForm(props) {
     clearInputs();
 
     try {
-      await axios.post("http://localhost:8000/courses/submit", {
+      await axios.post(baseUrl + "/courses/submit", {
         courseName,
       });
 

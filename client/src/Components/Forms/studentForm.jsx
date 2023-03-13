@@ -9,6 +9,8 @@ function StudentForm(props) {
   const [error, setError] = useState("");
   const [notification, setNotification] = useState("");
 
+  const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
+
   // Remove notification from screen
   const handleNotificationClose = () => {
     setNotification("");
@@ -51,7 +53,7 @@ function StudentForm(props) {
     console.log(fname, famName, dob);
 
     try {
-      await axios.post("http://localhost:8000/students/submit", {
+      await axios.post(baseUrl + "/students/submit", {
         firstName: fname,
         familyName: famName,
         dateOfBirth: dob,

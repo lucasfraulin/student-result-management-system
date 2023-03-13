@@ -10,6 +10,9 @@ function ResultForm(props) {
 
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState([]);
+
+  const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
+
   let grades = [
     { label: "A", value: "A" },
     { label: "B", value: "B" },
@@ -28,7 +31,7 @@ function ResultForm(props) {
   // Get list of students and courses for select dropdowns
   useEffect(() => {
     axios
-      .get("http://localhost:8000/students/list")
+      .get(baseUrl + "/students/list")
       .then((res) => {
         setStudents(
           res.data.map((student) => ({
