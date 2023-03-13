@@ -5,8 +5,11 @@ const Student = require("./models/student");
 const Course = require("./models/course");
 const Result = require("./models/result");
 const mongoose = require("mongoose");
-require('dotenv').config()
+const corsMiddleware = requrie("./middleware/corsMiddleware");
 
+require('dotenv').config();
+
+app.use(corsMiddleware); // use the created middleware
 
 let mongoUrl = null;
 
