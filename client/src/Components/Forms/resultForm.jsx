@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Notification from "../notification";
 import Select from "react-select";
+const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
 function ResultForm(props) {
   const [courseName, setCourseName] = useState("");
@@ -10,8 +11,6 @@ function ResultForm(props) {
 
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState([]);
-
-  const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
   let grades = [
     { label: "A", value: "A" },

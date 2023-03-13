@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Notification from "../notification";
+const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
 
 function CourseForm(props) {
   const [courseName, setCourseName] = useState("");
   const [error, setError] = useState("");
   const [notification, setNotification] = useState("");
-  const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
   // Remove notification from screen
   const handleNotificationClose = () => {
