@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CourseForm from "../Components/Forms/courseForm";
 import CoursesList from "../Components/Lists/coursesList";
 import axios from "axios";
+const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -10,7 +11,7 @@ export default function Courses() {
   // Get course data from node backend
   useEffect(() => {
     axios
-      .get("http://localhost:8000/courses/list")
+      .get(baseUrl + "/courses/list")
       .then((res) => setCourses(res.data))
       .catch((err) => console.log(err));
   }, [courseAdded]);

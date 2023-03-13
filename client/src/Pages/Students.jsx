@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import StudentForm from "../Components/Forms/studentForm";
 import StudentsList from "../Components/Lists/studentsList";
 import axios from "axios";
+const baseUrl = `${window.location.protocol}//${window.location.hostname}`;
+
 
 export default function Students() {
   const [students, setStudents] = useState([]);
@@ -10,7 +12,7 @@ export default function Students() {
   // Get student data from node backend
   useEffect(() => {
     axios
-      .get("http://localhost:8000/students/list")
+      .get(baseUrl + "/students/list")
       .then((res) => setStudents(res.data))
       .catch((err) => console.log(err));
   }, [studentAdded]);
