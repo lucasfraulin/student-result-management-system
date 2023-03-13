@@ -9,8 +9,6 @@ const corsMiddleware = requrie("./middleware/corsMiddleware");
 
 require('dotenv').config();
 
-app.use(corsMiddleware); // use the created middleware
-
 let mongoUrl = null;
 
 if (process.env.MONGO_CONNECTION_URL) {
@@ -34,6 +32,8 @@ app.use(express.static(path.join(__dirname, "./client/build")));
 
 // Use bodyparser to parse json results from mongodb
 app.use(bodyParser.json());
+
+app.use(corsMiddleware); // use the created middleware
 
 // Save student data to mongodb; table "students"
 app.post("/students/submit", (req, res) => {
@@ -97,7 +97,7 @@ app.get("/results/list", async (req, res) => {
 
 // Catch all for react frontend routes
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
 let port = process.env.PORT;
