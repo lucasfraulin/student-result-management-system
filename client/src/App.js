@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./Layouts/dashboard";
-import Home from "./Pages/Home";
+// import Home from "./Pages/Home";
 import Students from "./Pages/Students";
 import Courses from "./Pages/Courses";
 import Results from "./Pages/Results";
