@@ -5,8 +5,15 @@ const Student = require("./models/student");
 const Course = require("./models/course");
 const Result = require("./models/result");
 const mongoose = require("mongoose");
+require('dotenv').config()
 
-let mongoUrl = process.env.MONGO_CONNECTION_URL;
+
+let mongoUrl = null;
+
+if (process.env.MONGO_CONNECTION_URL) {
+  mongoUrl = process.env.MONGO_CONNECTION_URL;
+}
+
 if (mongoUrl === null || mongoUrl === "") {
   mongoUrl = "mongodb://localhost:27017/srms";
 }
@@ -86,7 +93,7 @@ app.get("/results/list", async (req, res) => {
 });
 
 // Catch all for react frontend routes
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
